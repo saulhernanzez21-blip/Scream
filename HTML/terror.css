@@ -1,0 +1,200 @@
+/* Configuración general y desplazamiento suave */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* Efecto suave al hacer clic en el botón de portada */
+}
+
+body {
+    background-color: #050505; /* Fondo casi negro, mejor que negro puro para no cansar la vista */
+    color: #d4d4d4; /* Texto gris claro */
+    font-family: 'Courier New', Courier, monospace; /* Tipografía estilo documento antiguo/máquina de escribir */
+    overflow-x: hidden;
+}
+
+/* --- ESTILOS DE LA PORTADA --- */
+#portada {
+    height: 100vh; 
+    display: flex;
+    background-color: #030409; /* Tono azul/negro muy profundo */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Tipografía limpia para el menú */
+}
+
+.portada-izquierda {
+    flex: 0 0 35%; /* El panel izquierdo ocupa el 35% del ancho */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye arriba, centro y abajo */
+    padding: 50px 60px;
+    box-sizing: border-box;
+}
+
+.portada-header {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: #ffffff;
+}
+
+.portada-centro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.portada-centro h1 {
+    font-size: 4.5rem;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.portada-centro .fecha {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #888888;
+}
+
+.portada-footer {
+    padding-bottom: 20px;
+}
+
+.btn-entrar {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    padding: 12px 30px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-entrar:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.portada-derecha {
+    flex: 1; /* Ocupa el 65% restante de la pantalla */
+    /* Asegúrate de nombrar la foto de tu portada así y tenerla en tu carpeta */
+    background-image: url(img/portada.jpeg); 
+    background-size: cover;
+    background-position: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.4); /* Línea divisoria sutil */
+}
+
+/* --- ESTILOS DE LA NARRATIVA Y FOTOS --- */
+#galeria {
+    min-height: 100vh;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-historia {
+    max-width: 800px; /* Limita el ancho del texto para una lectura cómoda y un buen layout */
+    width: 100%;
+}
+
+.texto-narrativo {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin: 40px 0;
+    text-align: justify;
+}
+
+.foto-contenedor {
+    width: 100%;
+    margin-bottom: 50px;
+    overflow: hidden;
+    border: 1px solid #111;
+}
+
+.foto-terror {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Efecto inicial tétrico: desaturado y contrastado */
+    filter: grayscale(85%) contrast(120%) brightness(80%); 
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.foto-terror:hover {
+    transform: scale(1.02); /* Ligero acercamiento que da sensación de movimiento */
+    /* Al pasar el cursor, revela tu trabajo fotográfico original */
+    filter: grayscale(0%) contrast(100%) brightness(100%); 
+}
+
+/* --- BOTÓN VOLVER ARRIBA --- */
+.btn-arriba {
+    display: block;
+    width: fit-content;
+    margin: 80px auto 40px auto; /* Da un respiro visual después de la última foto */
+    padding: 12px 30px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borde sutil que combina con la línea divisoria */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Misma tipografía de la portada */
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-arriba:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Brillo fantasmal muy ligero */
+}
+
+/* --- DISEÑO RESPONSIVO (TELÉFONOS Y PANTALLAS PEQUEÑAS) --- */
+@media (max-width: 768px) {
+    
+    /* Portada: Cambia de lado a lado, a formato apilado */
+    #portada {
+        flex-direction: column-reverse; /* Pone la imagen arriba y el texto abajo */
+    }
+
+    .portada-izquierda {
+        flex: 0 0 50%; /* El texto toma la mitad inferior de la pantalla */
+        padding: 40px 30px;
+        justify-content: space-evenly;
+    }
+
+    .portada-centro h1 {
+        font-size: 3rem; /* Reduce el título para que encaje bien */
+    }
+
+    .portada-derecha {
+        flex: 0 0 50%; /* La imagen toma la mitad superior */
+        border-left: none; /* Quitamos la línea vertical */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* Agregamos una línea horizontal divisoria */
+    }
+
+    /* Galería: Ajuste de márgenes y tamaños de texto para lectura móvil */
+    #galeria {
+        padding: 60px 15px; 
+    }
+
+    .texto-narrativo {
+        font-size: 1.1rem; /* Texto ligeramente más pequeño */
+        margin: 30px 0;
+    }
+
+    .foto-contenedor {
+        margin-bottom: 35px;
+    }
+
+    /* Botón Volver Arriba */
+    .btn-arriba {
+        margin: 50px auto 20px auto;
+        padding: 10px 25px;
+    }
+}
